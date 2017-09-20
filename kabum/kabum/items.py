@@ -11,3 +11,4 @@ from scrapy.item import Item, Field
 class KabumItem(Item):
     name = Field()
     price = Field()
+    category = Field()

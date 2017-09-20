@@ -6,10 +6,22 @@ class KabumSpider(Spider):
     start_urls = ['https://www.kabum.com.br/']
 
     def parse(self, response):
-        for div in response.css('div.H-box'):
+        pages = response.css('div.texto_categoria p.bot-categoria a')
+
+        for page in pages:
+            yield response.follow(page, callback=self.parse_sub)
+
+    def parse_sub(self, response):
+        elements = response.css('div.listagem-box')
+
+        for div in elements:
             item = KabumItem()
 
-            item['name'] = div.css('div.padding-prime div.align-list div a span.H-titulo::text').extract_first()
-            item['price'] = div.css('div.padding-prime div.preco_kabum div.H-preco::text').extract_first()
+            item['name'] = div.css('div.listagem-titulo_descr span.H-titulo a::text').extract_first()
+            item['price'] = div.css('div.listagem-precos div.listagem-preco::text').extract_first()
+            item['category'] = response.url.split('/')[-1]
 
             yield item
+
+        next_page = response.css('?')
+        yield response.follow(next_page, callback=self.parse_sub)

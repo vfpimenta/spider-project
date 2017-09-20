@@ -14,6 +14,7 @@ BOT_NAME = 'kabum'
 SPIDER_MODULES = ['kabum.spiders']
 NEWSPIDER_MODULE = 'kabum.spiders'
 
+LOG_LEVEL = 'INFO'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'kabum (+http://www.yourdomain.com)'
@@ -64,9 +65,7 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-	'kabum.pipelines.MongoDBPipeline': 300 
-}
+#ITEM_PIPELINES = {'kabum.pipelines.MongoDBPipeline': 300}
 
 MONGODB_SERVER = "localhost"
 MONGODB_PORT = 27017
