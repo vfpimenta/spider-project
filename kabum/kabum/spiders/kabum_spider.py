@@ -23,5 +23,6 @@ class KabumSpider(Spider):
 
             yield item
 
-        next_page = response.css('?')
-        yield response.follow(next_page, callback=self.parse_sub)
+        next_page_container = response.css('div.listagem-paginacao')[0].css('form table tr td')[6].css('a')
+        if len(next_page_container) > 0:
+            yield response.follow(next_page_container[0], callback=self.parse_sub)
