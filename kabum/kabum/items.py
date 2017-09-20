@@ -9,6 +9,17 @@ from scrapy.item import Item, Field
 
 
 class KabumItem(Item):
-    name = Field()
-    price = Field()
-    category = Field()
+	#url = Field(serializer=str)
+    name = Field(serializer=str)
+    #description = Field(serializer=str)
+    category = Field(serializer=str)
+    #brand = Field(serializer=str)
+    #navigation = Field(serializer=list)
+    #vendor_name = Field(serializer=str)
+    price = Field(serializer=float)
+    #old_price = Field(serializer=float)
+    #main_image = Field(serializer=str)
+    #secondary_image = Field(serializer=str)
+    #secondary_images = Field(serializer=list)
+    #features = Field(serializer=list)
+    #dimensions = Field(serializer=dict)

@@ -16,9 +16,13 @@ class KabumSpider(Spider):
 
         for div in elements:
             item = KabumItem()
-
+            
             item['name'] = div.css('div.listagem-titulo_descr span.H-titulo a::text').extract_first()
-            item['price'] = div.css('div.listagem-precos div.listagem-preco::text').extract_first()
+            raw_price = div.css('div.listagem-precos div.listagem-preco::text').re(r'\d+\,\d+')
+            if  len(raw_price) > 0:
+                item['price'] = float(raw_price[0].replace(',','.'))
+            else:
+                item['price'] = 0.0
             item['category'] = response.url.split('/')[-1]
 
             yield item
@@ -26,3 +30,5 @@ class KabumSpider(Spider):
         next_page_container = response.css('div.listagem-paginacao')[0].css('form table tr td')[6].css('a')
         if len(next_page_container) > 0:
             yield response.follow(next_page_container[0], callback=self.parse_sub)
+
+    #def parse_item(self, response):
