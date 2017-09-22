@@ -14,7 +14,9 @@ BOT_NAME = 'kabum'
 SPIDER_MODULES = ['kabum.spiders']
 NEWSPIDER_MODULE = 'kabum.spiders'
 
-LOG_LEVEL = 'INFO'
+#LOG_LEVEL = 'INFO'
+LOG_STDOUT = True
+LOG_FILE = '/var/log/scrapy-kabum.log'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'kabum (+http://www.yourdomain.com)'

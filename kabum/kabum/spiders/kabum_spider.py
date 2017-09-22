@@ -22,6 +22,8 @@ class KabumSpider(Spider):
             yield response.follow(next_page_container[0], callback=self.parse_sub)
 
     def parse_item(self, response):
+        self.logger.info('Started item scraping on %s', response.url)
+
         item = KabumItem()
 
         item['url'] = response.url
@@ -39,6 +41,7 @@ class KabumSpider(Spider):
         try:
             item['brand'] = response.xpath('//p[contains(text(),"Marca:")]/text()').extract_first().split(':')[1].strip()
         except AttributeError:
+            self.logger.debug('Failed to extract brand on %s', response.url)
             pass
 
         # Fetch navigation list
@@ -54,6 +57,9 @@ class KabumSpider(Spider):
         for key in prices.keys():
             if len(prices[key]) > 0:
                 item[key] = float(prices[key][0].replace('.','').replace(',','.'))
+            else:
+                self.logger.debug('{} not found on %s'.format(key), 
+                    response.url)  
 
         # Fetch images
         images = response.xpath('//ul[@id="imagens-carrossel"]/li/img/@src')
