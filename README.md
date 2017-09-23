@@ -1,6 +1,6 @@
 # Spider de Produto
 
-Este repositório é referente ao [teste prático da intelivix](https://github.com/intelivix/teste_pratico_scraping). Com desenvolvimento iniciado em 20/09/2017 e concluído em ??/09/2017.
+Este repositório é referente ao [teste prático da intelivix](https://github.com/intelivix/teste_pratico_scraping). Com desenvolvimento iniciado em 20/09/2017 e concluído em 23/09/2017.
 
 ### Informações gerais
 O site escolhido para a busca foi o [KaBuM!](http://kabum.com.br/), um site de *e-commerce* focado em produtos eletrônicos de onde foram obitidos 9515 (até a última execução). Por conta das características do site algumas mudanças foram feitas sobre os campos que foram processados:
@@ -10,7 +10,7 @@ O site escolhido para a busca foi o [KaBuM!](http://kabum.com.br/), um site de *
 
 A persistência dos dados foi feita em MongoDB.
 
-### Instruções para execução
+### Instruções para execução linux
 
 1. Inicie uma sessão com um usuário com permissão sudo
 2. Execute o script `setup` para instalar os requisitos.
